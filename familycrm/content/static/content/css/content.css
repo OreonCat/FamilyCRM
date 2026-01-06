@@ -10,10 +10,12 @@
 .content_base{
 	display: flex;
 	height: 100%;
+	width: 100%;
 }
 
 .content_base_left_bar{
 	min-width: 16rem;
+
 	background: var(--accent);
 
 }
@@ -33,7 +35,9 @@
 }
 
 .content_base_main_page{
+
 	padding: 0.7rem;
+	width: 100%;
 }
 
 .content_block{

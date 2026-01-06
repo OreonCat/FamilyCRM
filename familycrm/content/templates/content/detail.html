@@ -32,8 +32,8 @@
             </div>
             {% if comment.user == user %}
             <div class="comment_nav">
-                <a href="{% url 'content-detail' content.id %}?edit_comment={{comment.id}}"><p>✎</p></a>
-                <a href="{% url 'delete-comment-content' comment.id %}"><p>🗑️</p></a>
+                <a href="{{comment.get_edit_url}}"><p>✎</p></a>
+                <a href="{{comment.get_delete_url}}"><p>🗑️</p></a>
             </div>
             {% endif %}
         </div>

@@ -46,3 +46,9 @@ class Comment(models.Model):
 
     def can_edit(self, user, content):
         return user == self.user and self.content == content
+
+    def get_edit_url(self):
+        return f"{reverse('content-detail', kwargs={'pk': self.content.id})}?edit_comment={self.pk}"
+
+    def get_delete_url(self):
+        return reverse('delete-comment-content', kwargs={'pk': self.pk})

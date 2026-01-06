@@ -27,7 +27,7 @@ class ContentList(DataMixin, SearchMixin, ListView):
 class ContentListByCategory(DataMixin, SearchMixin, ListView):
     model = Content
     context_object_name = 'contents'
-    paginate_by = 10
+    paginate_by = 9
     template_name = 'content/index.html'
 
     def get_context_data(self, **kwargs):
@@ -52,11 +52,9 @@ class ContentDetail(DataMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.name
-        context['for_comment_object'] = self.object
         context['comments'] = self.object.comments.all()
 
         edited_comment_id = self.request.GET.get('edit_comment')
-
 
         if edited_comment_id:
             comment = get_object_or_404(Comment, id=edited_comment_id)
@@ -146,4 +144,5 @@ class DeleteCommentContent(LoginRequiredMixin, DataMixin, DeleteView):
     def get_success_url(self):
         context = self.get_context_data()
         return reverse_lazy('content-detail', kwargs={'pk': context['content'].id})
+
 
