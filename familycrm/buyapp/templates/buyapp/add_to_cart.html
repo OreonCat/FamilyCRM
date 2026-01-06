@@ -1,0 +1,28 @@
+{% extends 'buyapp/buyapp_base.html' %}
+{% block main_page %}
+
+    <h1>{{title}}</h1>
+    {% if object %}
+    <table class="cart_table">
+        <thead class="cart_table_head">
+            <tr>
+                <th>Продукт</th>
+                <th>Добавить</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prod in object %}
+            <tr>
+                <td><a href="{{prod.get_absolute_url}}">{{prod.name}}</a></td>
+                <td><a href="{% url 'buyapp:add_to_cart_logic' list prod.pk %}">+</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="no_product_in_list">Добавлены все продукты из списка</h2>
+    {% endif %}
+    <div class="back_to_list">
+        <a href="{% url 'buyapp:shopping_list_detail' list %}">Вернуться к списку</a>
+    </div>
+{% endblock %}

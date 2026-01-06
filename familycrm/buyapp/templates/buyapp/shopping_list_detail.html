@@ -1,0 +1,55 @@
+{% extends 'buyapp/buyapp_base.html' %}
+{% block main_page %}
+    <h1>Список покупок от {{list.time_created}}</h1>
+    <div class="shopping_list_detail_base_info">
+        <h2>Общая информация</h2>
+        <p><b>От:</b> {{list.user_from}}</p>
+        <p><b>Дата создания:</b> {{list.time_created}}</p>
+        {% if list.status == "bought" or list.status == "canceled" %}
+        <p><b>Дата завершения:</b> {{list.time_updated}}</p>
+        {% endif %}
+        <p><b>Статус: </b>{{list.get_status_display}}</p>
+        {% if list.user_to %}
+        <p><b>Покупатель:</b> {{list.user_to}}</p>
+        {% endif %}
+    </div>
+
+    <table class="cart_table">
+        <thead>
+            <tr class="cart_table_head">
+                <th>Продукт</th>
+                <th>Цена</th>
+                <th>Куплен</th>
+                <th>Отменен</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for obj in cart %}
+        <tr>
+            <td><a href="{{obj.product.get_absolute_url}}">{{obj.product.name}}</a></td>
+            <td>{{obj.product.price}}р</td>
+            {% if obj.status == 'actual' %}
+            <td><a href="{% url 'buyapp:buy_cart' list.id obj.id %}">✓</a></td>
+            <td><a href="{% url 'buyapp:cancel_cart' list.id obj.id %}">⨉</a></td>
+            {% elif obj.status == 'bought' %}
+            <td>Да</td>
+            <td><a href="{% url 'buyapp:cancel_cart' list.id obj.id %}">⨉</a></td>
+            {% else %}
+            <td><a href="{% url 'buyapp:buy_cart' list.id obj.id %}">✓</a></td>
+            <td>Да</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th><a href="{% url 'buyapp:add_to_cart' list.id %}">Добавить</a></th>
+                <th>{{cart_sum}}р</th>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="shopping_list_done">
+        <a href="{% url 'buyapp:done_list' list.id %}">Завершить</a>
+    </div>
+
+{% endblock %}

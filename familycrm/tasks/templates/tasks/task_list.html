@@ -1,0 +1,30 @@
+{% extends 'tasks/tasks_base.html' %}
+{% block main_page %}
+    <div class="content_page_header">
+        <h1>Все задачи</h1>
+        <div class="add_content_button">
+            <a href="{% url 'tasks:add_task' %}"><p>Добавить</p></a>
+        </div>
+    </div>
+    <div class="all_tasks_dashboard">
+        <div class="task_line new_tasks_line">
+            <h2>Новые</h2>
+            {% for task in new_tasks %}
+            {% include 'tasks/task_unique.html' %}
+            {% endfor %}
+        </div>
+        <div class="task_line ip_progress_tasks_line">
+            <h2>В процессе</h2>
+            {% for task in tasks_inprogress %}
+            {% include 'tasks/task_unique.html' %}
+            {% endfor %}
+        </div>
+        <div class="task_line complete_tasks_line">
+            <h2>Завершенные</h2>
+            {% for task in tasks_completed %}
+            {% include 'tasks/task_unique.html' %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

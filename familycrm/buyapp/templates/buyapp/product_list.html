@@ -1,0 +1,23 @@
+{% extends 'buyapp/buyapp_base.html' %}
+{% block main_page %}
+    <div class="content_page_header">
+        <h1>{{title}}</h1>
+        <div class="add_content_button">
+            <a href="{% url 'buyapp:add_product' %}"><p>Добавить</p></a>
+        </div>
+    </div>
+    <div class="product_card_collection">
+        {% for product in products %}
+        <a href="{{ product.get_absolute_url }}"><div class="product_card">
+            {% if product.photo %}
+            <img src="{{product.photo.url}}">
+            {% else %}
+            <img src="/media/staticmedia/image-placeholder-vertical.jpg">
+            {% endif %}
+            <h3>{{product.name}}</h3>
+            <p>Цена: {{product.price}}р</p>
+            <p>{{ product.manufacturer }}</p>
+        </div></a>
+        {% endfor %}
+    </div>
+{% endblock %}

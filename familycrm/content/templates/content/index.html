@@ -1,0 +1,39 @@
+{% extends 'content/content_base.html' %}
+{% block main_page %}
+    <div class="content_page_header">
+        <h1>{{title}}</h1>
+        <div class="add_content_button">
+            <a href="{% url 'add-content' %}"><p>Добавить</p></a>
+        </div>
+    </div>
+    <form method="get" class="search_form">
+        <p><label for="id_search">Поиск </label><input type="text" name="search" required id="id_search"></p>
+        <p><button type="submit">Поиск</button> </p>
+    </form>
+    <div class="content_block_collection">
+        {% for content in contents %}
+        <a href="{{content.get_absolute_url}}" class="content_block_a"><div class="content_block list_content_block">
+            <img src="{{content.picture.url}}">
+            <div class="content_block_text">
+                <p><b>{{content.name|capfirst}}</b></p>
+                <p><b>Статус: </b>{{ content.get_status_display }}</p>
+                <p>{{ content.category }}</p>
+                <p class="content_stars">{{ content.stars_display }}</p>
+            </div>
+        </div></a>
+        {% endfor %}
+    </div>
+    {% if page_obj.has_other_pages %}
+    <div class="pagination">
+        <p>Страницы: </p>
+        {% for p in paginator.page_range %}
+
+            {% if page_obj.number == p %}
+            <p>{{p}}</p>
+            {% else %}
+            <p><a href="?page={{p}}">{{p}}</a></p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'buyapp/buyapp_base.html' %}
+{% block main_page %}
+
+<h1>{{title}}</h1>
+<div class="content_block detail_content_block">
+    {% if product.photo %}
+    <img src="{{product.photo.url}}">
+    {% else %}
+    <img src="/media/staticmedia/image-placeholder-vertical.jpg">
+    {% endif %}
+    <div class="content_block_text">
+        <h2>{{product.name}}</h2>
+        <p><b>Цена: </b>{{ product.price }}</p>
+        <p><b>Производитель: </b>{{ product.manufacturer }}</p>
+        <div class="content_edit_or_delete">
+            <a href="{{product.get_update_url}}"><p>Редактировать</p></a>
+            <a href="{{product.get_delete_url}}"><p>Удалить</p></a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

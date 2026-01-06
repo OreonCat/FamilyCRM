@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="tasks_base">
+        <div class="tasks_base_left_bar">
+            <p><a href="{% url 'buyapp:index' %}">Списки покупок</a></p>
+            <p><a href="{% url 'buyapp:products' %}">Продукты</a></p>
+        </div>
+        <div class="tasks_base_main_page">
+            {% block main_page %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

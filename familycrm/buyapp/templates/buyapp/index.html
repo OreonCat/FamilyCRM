@@ -1,0 +1,52 @@
+{% extends 'buyapp/buyapp_base.html' %}
+{% block main_page %}
+    <div class="content_page_header">
+        <h1>{{title}}</h1>
+        <div class="add_content_button">
+            <a href="{% url 'buyapp:add_shopping_list' %}"><p>Добавить</p></a>
+        </div>
+    </div>
+    <div class="shopping_list_actual_and_completed">
+        <div class="shopping_list_base">
+            <h2>Актуальные</h2>
+            <div class="shopping_list_collection">
+                {% for list in actual_list %}
+                <a href="{{list.get_absolute_url}}">
+                    <div class="shopping_list_card actual_list">
+                        <h3>{{list.time_created}}</h3>
+                        <p>От {{list.user_from}}</p>
+                        <p>{{list.user_to}}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="shopping_list_base">
+            <h2>Завершенные</h2>
+            <div class="shopping_list_collection">
+                {% for list in old_list %}
+                <a href="{{list.get_absolute_url}}">
+                    <div class="shopping_list_card {% if list.status == 'bought' %} bought_list {% else %} canceled_list {% endif %}">
+                        <h3>{{list.time_created}}</h3>
+                        <p>От {{list.user_from}}</p>
+                        <p>{{list.user_to}}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% if page_obj.has_other_pages %}
+        <div class="pagination">
+            <p>Страницы: </p>
+            {% for p in paginator.page_range %}
+
+                {% if page_obj.number == p %}
+                <p>{{p}}</p>
+                {% else %}
+                <p><a href="?page={{p}}">{{p}}</a></p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

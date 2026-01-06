@@ -1,0 +1,128 @@
+:root {
+    --primary: #9DBF9E;      /* Мятно-зеленый */
+    --secondary: #D4A5A5;    /* Пудрово-розовый */
+    --accent: #F9DEC9;       /* Персиковый */
+    --neutral: #FAF3DD;      /* Кремовый фон */
+    --text: #3A506B;         /* Темно-синий текст */
+    --warning: #E8AA8C;      /* Оранжевый для важного */
+}
+
+
+.tasks_base{
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.tasks_base_left_bar{
+	min-width: 16rem;
+	background: var(--accent);
+
+}
+
+.tasks_base_left_bar a{
+	display: inline-block;
+	padding-top: 0.7rem;
+	padding-bottom: 0.7rem;
+	padding-left: 10%;
+	align-items: center;
+	width: 90%;
+	text-decoration: none;
+}
+
+.tasks_base_left_bar a:hover{
+	background: var(--secondary);
+}
+
+.tasks_base_main_page{
+	padding: 0.7rem;
+	width: 100%;
+}
+
+
+.all_tasks_dashboard{
+	width: 100%;
+	display: flex;
+	
+	flex-wrap: wrap;
+	margin-top: 1rem;
+}
+
+.task_line a{
+	text-decoration: none;
+}
+
+.task_line{
+	flex-grow: 1;
+
+}
+
+.task{
+	padding: 1rem;
+	min-width: 12rem;
+	margin: 0.5rem;
+	margin-left: 0;
+}
+
+
+.task:hover {
+	background: var(--warning);
+}
+
+.task p{
+	margin-bottom: 0.1rem;
+	max-width: 15rem;
+}
+
+.normal_task{
+	background-color: var(--primary);
+}
+
+.deadline_is_over{
+	background-color: var(--secondary);
+
+}
+
+.selected{
+	background: var(--secondary);
+}
+
+.task_detail{
+	max-width: 40rem;
+}
+
+.task_detail h1{
+	padding: 1rem;
+	background: var(--accent);
+}
+
+.task_detail_info{
+	background: var(--primary);
+}
+
+.task_detail_info p{
+	padding: 1rem;
+}
+
+.task_detail_deadline{
+	padding: 1rem;
+	background: var(--secondary);
+}
+
+.task_detail_links{
+	display: flex;
+}
+
+.task_detail_links a{
+	flex-grow: 1;
+	text-align: center;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	text-decoration: none;
+	background-color: var(--warning);
+}
+
+.task_detail_links a:hover{
+	background-color: var(--secondary);
+}
+

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="user_main_page">
+    <div class="profile">
+        <div class="profile_info">
+            <img src="/media/staticmedia/cat_profile.png">
+            <div>
+                {% if profile.first_name or profile.last_name %}
+                <h1>{{profile.first_name}} {{profile.last_name}}</h1>
+                {% else %}
+                <h1>Имя не задано</h1>
+                {% endif %}
+                <h2>{{profile.username}}</h2>
+            </div>
+        </div>
+        <div class="profile_links">
+            <a href="{% url 'users:update_profile' %}"><p>Редактировать профиль</p></a>
+            <a href="{% url 'users:change_password' %}"><p>Изменить пароль</p></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

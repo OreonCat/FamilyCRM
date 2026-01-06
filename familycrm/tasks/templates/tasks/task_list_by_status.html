@@ -1,0 +1,9 @@
+{% extends 'tasks/tasks_base.html' %}
+{% block main_page %}
+    <h1>Задачи</h1>
+    <div class="task_line new_tasks_line">
+        {% for task in tasks %}
+        {% include 'tasks/task_unique.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}

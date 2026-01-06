@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="content_base">
+        <div class="content_base_left_bar">
+            <p><a href="{% url 'index' %}">Все</a> </p>
+            {% for category in categories %}
+                <p><a href="{% url 'category' category.slug %}">{{ category.name }}</a></p>
+            {% endfor %}
+        </div>
+        <div class="content_base_main_page">
+            {% block main_page %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

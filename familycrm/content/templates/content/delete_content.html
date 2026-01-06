@@ -1,0 +1,15 @@
+{% extends 'content/content_base.html' %}
+{% block main_page %}
+<div class="user_main_page">
+    <div class="form-container">
+        <h3>Вы действительно хотите удалить "{{ object }}"?</h3>
+        <form action="" method="post">
+            <div class="generic-form">
+                {% csrf_token %}
+                {{ form }}
+            </div>
+            <p class="button_p"><button type="submit">Удалить</button> </p>
+        </form>
+    </div>
+</div>
+{% endblock %}

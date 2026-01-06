@@ -1,0 +1,7 @@
+<div class="task {% if task.deadline_is_over %} deadline_is_over {% else %} normal_task {% endif %}">
+    <a href="{{task.get_absolute_url}}">
+        <p><b>{{task.name}}</b></p>
+        <p>{{task.description}}</p>
+        <p>{{task.user.username}}</p>
+    </a>
+</div>

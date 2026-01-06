@@ -1,0 +1,35 @@
+{% extends 'tasks/tasks_base.html' %}
+{% block main_page %}
+<div class="task_detail">
+    <h1>{{task.name}}</h1>
+    <div class="task_detail_info">
+        <p><b>Описание:</b> {{task.description}}</p>
+        <p><b>Время создания:</b> {{task.time_created}}</p>
+        <p><b>Последнее изменение:</b> {{task.time_updated}}</p>
+        {% if task.deadline %}
+        <p><b>Дедлайн:</b> {{task.deadline}}</p>
+        {% endif %}
+        <p><b>Статус:</b> {{task.get_status_display}}</p>
+        {% if task.user %}
+        <p><b>Ответственный:</b> {{task.user}}</p>
+        {% endif %}
+    </div>
+    {% if task.deadline_is_over %}
+    <div class="task_detail_deadline">
+        <p>Просрочен дэдлайн</p>
+    </div>
+    {% endif %}
+    <div class="task_detail_links">
+        <a href="{% url 'tasks:edit_task' task.id %}"><p>Редактировать</p></a>
+        {% if task.status == "new" %}
+        <a href="{% url 'tasks:make_task_in_progress' task.id %}"><p>Взять в работу</p></a>
+        {% endif %}
+        {% if task.status == "in_progress" %}
+        <a href="{% url 'tasks:make_task_completed' task.id %}"><p>Завершить</p></a>
+        {% endif %}
+        <a href="{% url 'tasks:delete_task' task.id %}"><p>Удалить</p></a>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,178 @@
+:root {
+    --primary: #9DBF9E;      /* Мятно-зеленый */
+    --secondary: #D4A5A5;    /* Пудрово-розовый */
+    --accent: #F9DEC9;       /* Персиковый */
+    --neutral: #FAF3DD;      /* Кремовый фон */
+    --text: #3A506B;         /* Темно-синий текст */
+    --warning: #E8AA8C;      /* Оранжевый для важного */
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Arial', sans-serif;
+	color: var(--text);
+}
+
+html, body{
+	height: 100%;
+}
+
+html, body{
+	display: flex;
+	flex-direction: column;
+}
+
+header{
+	background: var(--primary);
+	color: var(--text);
+	display: flex;
+	justify-content: space-between;
+	flex-shrink: 0;
+}
+
+header h1{
+	padding: 1rem;
+}
+
+header h1 a{
+	text-decoration: none;
+	color: var(--text);
+}
+
+main{
+	flex: 1 0 auto;
+	background: var(--neutral);
+	
+}
+
+.right-bar{
+
+	display: flex;
+	text-align: center;
+	align-items: center;
+}
+
+.right-bar a{
+	padding: 1rem;
+	padding-top: 1.6rem;
+	padding-bottom: 1.6rem;
+	background: var(--accent);
+	color: var(--text);
+	text-decoration: none;
+}
+
+.right-bar a:hover{
+	background: var(--secondary);
+}
+
+.user_main_page{
+	padding: 1rem;
+}
+
+.generic-form{
+	padding: 1rem;
+}
+
+.form-element{
+	margin-bottom: 1rem;
+}
+
+.form-element input, select, textarea{
+	padding: 0.5rem;
+
+}
+
+.form-element input{
+	min-width: 10rem;
+}
+
+.form-element select{
+	min-width: 11.5rem;
+}
+
+.form-element textarea{
+	width: 10.6rem;
+	height: 5rem;
+	resize: none;
+}         
+
+.form-label{
+	display: inline-block;
+	min-width: 15rem;
+	font-size: 1rem;
+}
+
+.form-container{
+	
+	width: fit-content;
+}
+
+.generic-form{
+	background: var(--primary);
+}
+
+
+
+.form-container h3{
+	background: var(--secondary);
+	padding: 1rem;
+}
+
+.button_p{
+	text-align: center;
+	align-items: center;	
+}
+
+
+.button_p button{
+	padding: 1rem;
+	width: 100%;
+	border-style: none;
+	background: var(--warning);
+}
+
+.forget_pass{
+	text-align: center;
+	padding: 0.5rem;
+}
+
+.profile{
+	width: fit-content;
+}
+
+.profile_info{
+	display: flex;
+	background: var(--accent);
+	padding: 1rem;
+}
+
+.profile_info img{
+	width: 30rem;
+}
+
+.profile_info div{
+	align-content: center;
+}
+
+.profile_links{
+	display: flex;
+}
+
+.profile_links p{
+	text-align: center;
+}
+
+.profile_links a{
+	width: 50%;
+	color: var(--text);
+	text-decoration: none;
+	align-items: center;
+	align-content: center;
+	padding: 1rem;
+	background: var(--secondary);
+}
+
+.profile_links a:hover{
+	background: var(--warning);
+}

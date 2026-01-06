@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="tasks_base">
+        <div class="tasks_base_left_bar">
+            <p><a href="{% url 'tasks:index' %}"  class="{% if selected_item == 'all' %}selected {% endif %}" >Панель</a></p>
+            {% for status_url, status in statuses %}
+            <p><a href="{% url 'tasks:status' status_url %}" class="{% if selected_item == status_url %}selected {% endif %}">{{status}}</a></p>
+            {% endfor %}
+        </div>
+        <div class="tasks_base_main_page">
+            {% block main_page %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

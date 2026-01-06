@@ -1,0 +1,59 @@
+{% extends 'content/content_base.html' %}
+{% block main_page %}
+<h1>{{title|capfirst}}</h1>
+<div class="content_block detail_content_block">
+    <img src="{{content.picture.url}}">
+    <div class="content_block_text">
+        <h2>{{content.name|capfirst}}</h2>
+        <p><b>Статус: </b>{{ content.get_status_display }}</p>
+        <p><b>Добавлен пользователем: </b>{{ content.user.username }}</p>
+        <p><b>Добавлено: </b>{{ content.time_created }}</p>
+        <p>{{ content.category }}</p>
+        <p class="content_stars">{{ content.stars_display }}</p>
+        <div class="content_edit_or_delete">
+            <a href="{% url 'edit-content' content.id %}"><p>Редактировать</p></a>
+            <a href="{% url 'delete-content' content.id %}"><p>Удалить</p></a>
+        </div>
+    </div>
+</div>
+<div class="content_comment_block">
+    <h1>Комментарии</h1>
+    <div class="content_comments">
+        {% for comment in comments %}
+        <div class="comment  {% if comment.user == user %} my_comment  {% else %} other_comment {% endif %}">
+            <div class="comment_main">
+                <h3>{{comment.user.username}}</h3>
+                <p>{{comment.message}}</p>
+                {% if comment.time_created|date:"Y-m-d H:i:s" == comment.time_updated|date:"Y-m-d H:i:s" %}
+                <p>{{comment.time_created}}</p>
+                {% else %}
+                <p>{{comment.time_created}} Изменено</p>
+                {% endif %}
+            </div>
+            {% if comment.user == user %}
+            <div class="comment_nav">
+                <a href="{% url 'content-detail' content.id %}?edit_comment={{comment.id}}"><p>✎</p></a>
+                <a href="{% url 'delete-comment-content' comment.id %}"><p>🗑️</p></a>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_active %}
+    <form class="comment_form" method="post">
+        {% csrf_token %}
+        {% for f in comment_form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label> </p>
+        <div class="form_error" >{{ f.errors }}</div>
+        <div class="comment_form_flex_section">
+            <p class="comment_input_p">{{f}}</p>
+            <p class="comment_button_p"><button type="submit">Отправить</button></p>
+        </div>
+        {% endfor %}
+    </form>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

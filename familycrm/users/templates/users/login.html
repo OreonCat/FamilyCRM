@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="user_main_page">
+    <div class="form-container">
+        <h3>Войти</h3>
+        <form action="" method="post" >
+            <div class="generic-form">
+                {% csrf_token %}
+                {% for f in form %}
+                <p class="form-element"><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label> {{f}} </p>
+                <div class="form_error" >{{ f.errors }}</div>
+                {% endfor %}
+            </div>
+            <p class="button_p"><button type="submit">Войти</button> </p>
+        </form>
+        <p class="forget_pass"><a href="{% url 'users:password_reset' %}">Забыли пароль?</a></p>
+    </div>
+</div>
+
+{% endblock %}
